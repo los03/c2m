@@ -1,1 +1,16 @@
 
+name: C2M Bot
+on:
+  schedule:
+    - cron: '*/30 * * * *'   # Her 30 dakikada bir
+  workflow_dispatch:          # Manuel çalıştırma butonu
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install aiohttp requests proxmint
+      - run: python c2m_ua_rotate.py kpekegtmen darkgothnox
